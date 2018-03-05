@@ -1,0 +1,214 @@
+﻿@model IEnumerable<EmployeeMVC.Models.Employee>
+@{
+    ViewBag.Title = "Employee";
+}
+
+<h2 style="padding-left:155px">Employee Details</h2> <br/>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<div class="col-md-8" style="align-content:center; padding-left:156px"> 
+    <input class="form-control" type="text" id="myInput" placeholder="Search For Employee here..." />
+    <br />
+    <br />
+    <table class="table table-bordered table-striped" >
+        <thead>
+            <tr>
+                <th style="padding:15px">RowID</th>
+                <th style="padding:15px">EmployeeID</th>
+                <th style="padding:15px">EmployeeName</th>
+                <th style="padding:15px">Phno</th>
+                <th style="padding:15px">Email Address</th>                
+                <th style="padding:15px">Edit</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td style="padding:15px">@x.RowID</td>
+                    <td style="padding:15px">@x.EmployeeID</td>
+                    <td style="padding:15px">@x.Name</td>
+                    <td style="padding:15px">@x.PhoneNo</td>
+                    <td style="padding:15px">@x.EmailID</td>
+                    <td><button class="btn" @*data-toggle="modal" data-target="#Dialog-Box"*@ 
+         onclick="location.href= ' @Url.Action("ShowEmployee", "AddEmployee", new { id = x.RowID })'">Edit</button></td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*<div id="Dialog-Box" class="col-md-4" style="visibility:hidden; padding-left:60px;" >
+    <div>
+        ID:<br /><input type="text" id="Dialog-ID" />
+    </div>  <br />
+    <div>
+        Name:<br /><input type="text" id="Dialog-Name" />
+    </div><br />
+    <div>
+        Phno:<br /><input type="text" id="Dialog-Phno" />
+    </div><br />
+    <div>
+        EmailID:<br /><input type="text" id="Dialog-EmailID" />
+    </div><br />
+    <input type="submit" onclick="onsave()" value="Update" />
+    <input id="cancel" type="button" value="Cancel" />
+</div>*@
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="Dialog-Box" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Employee Edit</h4>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-8">
+                    <table class="table-condensed">
+                        <tbody>
+                            <tr>
+                                <td>ID</td>
+                                
+                                <td><input type="text" class="form-control" id="Dialog-ID" placeholder="Enter User ID" /></td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="email" class="form-control" id="Dialog-Name" placeholder="Enter Email ID" /></td>
+                            </tr>
+                            <tr>
+                                <td>Phno</td>
+                                <td><input type="text" class="form-control" id="Dialog-Phno" placeholder="Enter Password" /></td>
+                            </tr>
+                            <tr>
+                                <td>EmailID</td>
+                                <td><input type="text" class="form-control" id="Dialog-EmailID" placeholder="Re-enter Password" /></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                 <td>   <input type="radio" name="gender" value="male"> Male
+                                    <input type="radio" name="gender" value="female"> Female
+                                    <input type="radio" name="gender" value="other"> Other </td>
+                            </tr>
+                            @*<tr>
+                                <td>Photo</td>
+                                <td><img id="Dialog-Photo" /></td>
+                            </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success"  >Update</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+       
+
+    </div>
+    </div>
+
+    <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+</script>
+
+        @*$('.btn').click(function () {
+             @Html.ActionLink("AddEmployee", "Addemployee")*@
+
+            @*//$("#Dialog-Box").css("visibility", "visible");
+            //var rid = $(this).closest('tr').find('td').eq(0).text();
+            //var Empid = $(this).closest('tr').find('td').eq(1).text();
+            //var name = $(this).closest('tr').find('td').eq(2).text();
+            //var phno = $(this).closest('tr').find('td').eq(3).text();
+            //var emailid = $(this).closest('tr').find('td').eq(4).text();
+            ////var base64= x.Photo;
+            ////var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        ////alert(rid);
+
+        //$('#Dialog-ID').val(Empid);
+        //$('#Dialog-Name').val(name);
+        //$('#Dialog-Phno').val(phno);
+        //$('#Dialog-EmailID').val(emailid);
+        ////$('#Dialog-Photo').val(imgSrc);
+             //});
+
+        //$('#cancel').click(function () {
+        //    $("#Dialog-Box").css('visibility', 'hidden');
+        //});*@
+
+    @*</script>*@
+
+
+    @*<style>
+        /*$('#Dialog-Box').dialog({
+                autoOpen: false,
+                height: 500,
+                width: 700,
+                modal: false
+        });*/
+            </style>
+        <script>
+
+        function OpenDialog() {
+
+                //var name = $('#Name').val();
+                //var address = $('#Address').val();
+            alert("clicked here");
+
+            var
+                //$('#Dialog-Name').val(name);
+                //$('#Dialog-Address').val(address);
+                $('#Dialog-Box').dialog('open');
+            }
+
+        </script>
+
+        <div>
+            <span class="popuptext" id="myPopup">Popup text...</span>
+        </div>
+
+        <div>
+            <script>
+                $( "button" ).click(function() {
+
+                    alert("Clicked Here!!!");
+                    $("button").dialog({
+                    autoOpen: false,
+                    title: 'Title',
+                    width: 500,
+                    height: 'auto',
+                    modal: true
+                });
+
+            });
+            function openPopup() {
+                $("myPopup").dialog("open");
+            }
+            </script>
+        </div>
+
+        @Ajax.ActionLink("button", "SomeAction", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "button", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
+
+        <div id="result" style="display:none;">This is popup </div>*@
+
+
+

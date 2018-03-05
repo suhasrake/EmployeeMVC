@@ -1,0 +1,894 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CSLERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="DOJ" Type="datetime" Nullable="false" />
+          <Property Name="DOR" Type="datetime" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="100" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Picture" Type="varchar(max)" />
+          <Property Name="DocumentStatus" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmployeeDesignation">
+          <Key>
+            <PropertyRef Name="ROwID" />
+          </Key>
+          <Property Name="ROwID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeExperience">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpStartDate" Type="date" Nullable="false" />
+          <Property Name="ExpEndDate" Type="date" Nullable="false" />
+          <Property Name="Employer" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Post" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeFinancialLimit">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DocumentID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FinancialLimit" Type="float" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeePayRevision">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RevisionDate" Type="date" Nullable="false" />
+          <Property Name="FixPay" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VariablePay" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VPPercentage" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeePosting">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PostingDate" Type="date" Nullable="false" />
+          <Property Name="OfficeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportingOfficerID" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeQualification">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qualification" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="YearOfPassing" Type="int" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeRoleMapping">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeRoles" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ERPUser">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CSLERP.dbo.ViewEmployeeDesignation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewEmployeeDesignation">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="DesignationDate" />
+            <PropertyRef Name="DesignationID" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreateUser" />
+            <PropertyRef Name="createtime" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="DesignationDate" Type="date" Nullable="false" />
+          <Property Name="DesignationID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="250" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUserName" Type="varchar" MaxLength="100" />
+          <Property Name="createtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CSLERP.dbo.ViewEmployeeDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewEmployeeDetails">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="DOJ" Type="date" />
+          <Property Name="DOR" Type="date" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="OfficeID" Type="varchar" MaxLength="50" />
+          <Property Name="OfficeName" Type="varchar" MaxLength="100" />
+          <Property Name="RegionID" Type="varchar" MaxLength="50" />
+          <Property Name="RegionName" Type="varchar" MaxLength="100" />
+          <Property Name="PostingDate" Type="date" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ReportingOfficerID" Type="varchar" MaxLength="50" />
+          <Property Name="ReportingOfficerName" Type="varchar" MaxLength="100" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="250" />
+          <Property Name="DesignationDate" Type="date" />
+          <Property Name="Picture" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CSLERP.dbo.ViewEmployeeLocation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewEmployeeLocation">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="PostingDate" />
+            <PropertyRef Name="OfficeID" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Remarks" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreateTime" />
+            <PropertyRef Name="CreateUser" />
+            <PropertyRef Name="CreatorName" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="PostingDate" Type="date" Nullable="false" />
+          <Property Name="OfficeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OfficeName" Type="varchar" MaxLength="100" />
+          <Property Name="ReportingOfficerID" Type="varchar" MaxLength="50" />
+          <Property Name="ReportingOfficerName" Type="varchar" MaxLength="100" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatorName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CSLERP.dbo.ViewEmployeePosting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewEmployeePosting">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="PostingDate" />
+            <PropertyRef Name="OfficeID" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Remarks" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreateTime" />
+            <PropertyRef Name="CreateUser" />
+            <PropertyRef Name="CreatorName" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PostingDate" Type="date" Nullable="false" />
+          <Property Name="OfficeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OfficeName" Type="varchar" MaxLength="100" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ReportingOfficerID" Type="varchar" MaxLength="50" />
+          <Property Name="ReportingOfficerName" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatorName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmploeeRoleMapping_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmploeeRoleMapping_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmploeeRoleMapping_ERPUser' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmploeeRoleMapping_ERPUser" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeDesignation_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeDesignation_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeDesignation_ERPUser' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeDesignation_ERPUser" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeExperience_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeExperience_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeExperience_Employee1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeExperience_Employee1" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeFinancialLimit_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeFinancialLimit_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeFinancialLimit_ERPUser' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeFinancialLimit_ERPUser" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeePayRevision_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeePayRevision_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeePayRevision_ERPUser' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeePayRevision_ERPUser" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeQualification_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeQualification_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmployeeQualification_Employee1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmployeeQualification_Employee1" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmplyeePosting_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmplyeePosting_Employee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_EmplyeePosting_ERPUser' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_EmplyeePosting_ERPUser" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_ERPUser_Employee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_ERPUser_Employee" />-->
+        <EntityContainer Name="CSLERPModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeDesignation" EntityType="Self.EmployeeDesignation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeExperience" EntityType="Self.EmployeeExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeFinancialLimit" EntityType="Self.EmployeeFinancialLimit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeePayRevision" EntityType="Self.EmployeePayRevision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeePosting" EntityType="Self.EmployeePosting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeQualification" EntityType="Self.EmployeeQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeRoleMapping" EntityType="Self.EmployeeRoleMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ERPUser" EntityType="Self.ERPUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewEmployeeDesignation" EntityType="Self.ViewEmployeeDesignation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewEmployeeDesignation].[RowID] AS [RowID], 
+    [ViewEmployeeDesignation].[EmployeeID] AS [EmployeeID], 
+    [ViewEmployeeDesignation].[EmployeeName] AS [EmployeeName], 
+    [ViewEmployeeDesignation].[DesignationDate] AS [DesignationDate], 
+    [ViewEmployeeDesignation].[DesignationID] AS [DesignationID], 
+    [ViewEmployeeDesignation].[Designation] AS [Designation], 
+    [ViewEmployeeDesignation].[Remarks] AS [Remarks], 
+    [ViewEmployeeDesignation].[Status] AS [Status], 
+    [ViewEmployeeDesignation].[CreateUser] AS [CreateUser], 
+    [ViewEmployeeDesignation].[CreateUserName] AS [CreateUserName], 
+    [ViewEmployeeDesignation].[createtime] AS [createtime]
+    FROM [dbo].[ViewEmployeeDesignation] AS [ViewEmployeeDesignation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewEmployeeDetails" EntityType="Self.ViewEmployeeDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewEmployeeDetails].[RowID] AS [RowID], 
+    [ViewEmployeeDetails].[EmployeeID] AS [EmployeeID], 
+    [ViewEmployeeDetails].[Name] AS [Name], 
+    [ViewEmployeeDetails].[Gender] AS [Gender], 
+    [ViewEmployeeDetails].[DOB] AS [DOB], 
+    [ViewEmployeeDetails].[DOJ] AS [DOJ], 
+    [ViewEmployeeDetails].[DOR] AS [DOR], 
+    [ViewEmployeeDetails].[PhoneNo] AS [PhoneNo], 
+    [ViewEmployeeDetails].[EmailID] AS [EmailID], 
+    [ViewEmployeeDetails].[Status] AS [Status], 
+    [ViewEmployeeDetails].[OfficeID] AS [OfficeID], 
+    [ViewEmployeeDetails].[OfficeName] AS [OfficeName], 
+    [ViewEmployeeDetails].[RegionID] AS [RegionID], 
+    [ViewEmployeeDetails].[RegionName] AS [RegionName], 
+    [ViewEmployeeDetails].[PostingDate] AS [PostingDate], 
+    [ViewEmployeeDetails].[Department] AS [Department], 
+    [ViewEmployeeDetails].[DepartmentName] AS [DepartmentName], 
+    [ViewEmployeeDetails].[ReportingOfficerID] AS [ReportingOfficerID], 
+    [ViewEmployeeDetails].[ReportingOfficerName] AS [ReportingOfficerName], 
+    [ViewEmployeeDetails].[Designation] AS [Designation], 
+    [ViewEmployeeDetails].[DesignationName] AS [DesignationName], 
+    [ViewEmployeeDetails].[DesignationDate] AS [DesignationDate], 
+    [ViewEmployeeDetails].[Picture] AS [Picture]
+    FROM [dbo].[ViewEmployeeDetails] AS [ViewEmployeeDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewEmployeeLocation" EntityType="Self.ViewEmployeeLocation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewEmployeeLocation].[RowID] AS [RowID], 
+    [ViewEmployeeLocation].[EmployeeID] AS [EmployeeID], 
+    [ViewEmployeeLocation].[Name] AS [Name], 
+    [ViewEmployeeLocation].[UserID] AS [UserID], 
+    [ViewEmployeeLocation].[PostingDate] AS [PostingDate], 
+    [ViewEmployeeLocation].[OfficeID] AS [OfficeID], 
+    [ViewEmployeeLocation].[OfficeName] AS [OfficeName], 
+    [ViewEmployeeLocation].[ReportingOfficerID] AS [ReportingOfficerID], 
+    [ViewEmployeeLocation].[ReportingOfficerName] AS [ReportingOfficerName], 
+    [ViewEmployeeLocation].[Department] AS [Department], 
+    [ViewEmployeeLocation].[DepartmentName] AS [DepartmentName], 
+    [ViewEmployeeLocation].[Remarks] AS [Remarks], 
+    [ViewEmployeeLocation].[Status] AS [Status], 
+    [ViewEmployeeLocation].[CreateTime] AS [CreateTime], 
+    [ViewEmployeeLocation].[CreateUser] AS [CreateUser], 
+    [ViewEmployeeLocation].[CreatorName] AS [CreatorName]
+    FROM [dbo].[ViewEmployeeLocation] AS [ViewEmployeeLocation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewEmployeePosting" EntityType="Self.ViewEmployeePosting" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewEmployeePosting].[RowID] AS [RowID], 
+    [ViewEmployeePosting].[EmployeeID] AS [EmployeeID], 
+    [ViewEmployeePosting].[Name] AS [Name], 
+    [ViewEmployeePosting].[PostingDate] AS [PostingDate], 
+    [ViewEmployeePosting].[OfficeID] AS [OfficeID], 
+    [ViewEmployeePosting].[OfficeName] AS [OfficeName], 
+    [ViewEmployeePosting].[Department] AS [Department], 
+    [ViewEmployeePosting].[DepartmentName] AS [DepartmentName], 
+    [ViewEmployeePosting].[Remarks] AS [Remarks], 
+    [ViewEmployeePosting].[ReportingOfficerID] AS [ReportingOfficerID], 
+    [ViewEmployeePosting].[ReportingOfficerName] AS [ReportingOfficerName], 
+    [ViewEmployeePosting].[Status] AS [Status], 
+    [ViewEmployeePosting].[CreateTime] AS [CreateTime], 
+    [ViewEmployeePosting].[CreateUser] AS [CreateUser], 
+    [ViewEmployeePosting].[CreatorName] AS [CreatorName]
+    FROM [dbo].[ViewEmployeePosting] AS [ViewEmployeePosting]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSLERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DOJ" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DOR" Type="DateTime" Precision="3" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentStatus" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeeDesignation">
+          <Key>
+            <PropertyRef Name="ROwID" />
+          </Key>
+          <Property Name="ROwID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeExperience">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExpEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Employer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Post" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmployeeFinancialLimit">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DocumentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FinancialLimit" Type="Double" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeePayRevision">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RevisionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FixPay" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VariablePay" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VPPercentage" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmployeePosting">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OfficeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReportingOfficerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeQualification">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YearOfPassing" Type="Int32" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmployeeRoleMapping">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeRoles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ERPUser">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewEmployeeDesignation">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="DesignationDate" />
+            <PropertyRef Name="DesignationID" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreateUser" />
+            <PropertyRef Name="createtime" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DesignationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DesignationID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ViewEmployeeDetail">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="DOJ" Type="DateTime" Precision="0" />
+          <Property Name="DOR" Type="DateTime" Precision="0" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="OfficeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RegionID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PostingDate" Type="DateTime" Precision="0" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingOfficerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportingOfficerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DesignationName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationDate" Type="DateTime" Precision="0" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewEmployeeLocation">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="PostingDate" />
+            <PropertyRef Name="OfficeID" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Remarks" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreateTime" />
+            <PropertyRef Name="CreateUser" />
+            <PropertyRef Name="CreatorName" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OfficeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OfficeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReportingOfficerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportingOfficerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewEmployeePosting">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="PostingDate" />
+            <PropertyRef Name="OfficeID" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Remarks" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreateTime" />
+            <PropertyRef Name="CreateUser" />
+            <PropertyRef Name="CreatorName" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PostingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OfficeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OfficeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReportingOfficerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportingOfficerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CSLERPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeDesignations" EntityType="Self.EmployeeDesignation" />
+          <EntitySet Name="EmployeeExperiences" EntityType="Self.EmployeeExperience" />
+          <EntitySet Name="EmployeeFinancialLimits" EntityType="Self.EmployeeFinancialLimit" />
+          <EntitySet Name="EmployeePayRevisions" EntityType="Self.EmployeePayRevision" />
+          <EntitySet Name="EmployeePostings" EntityType="Self.EmployeePosting" />
+          <EntitySet Name="EmployeeQualifications" EntityType="Self.EmployeeQualification" />
+          <EntitySet Name="EmployeeRoleMappings" EntityType="Self.EmployeeRoleMapping" />
+          <EntitySet Name="ERPUsers" EntityType="Self.ERPUser" />
+          <EntitySet Name="ViewEmployeeDesignations" EntityType="Self.ViewEmployeeDesignation" />
+          <EntitySet Name="ViewEmployeeDetails" EntityType="Self.ViewEmployeeDetail" />
+          <EntitySet Name="ViewEmployeeLocations" EntityType="Self.ViewEmployeeLocation" />
+          <EntitySet Name="ViewEmployeePostings" EntityType="Self.ViewEmployeePosting" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSLERPModelStoreContainer" CdmEntityContainer="CSLERPEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="CSLERPModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="DOR" ColumnName="DOR" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="DocumentStatus" ColumnName="DocumentStatus" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeDesignations">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeeDesignation">
+              <MappingFragment StoreEntitySet="EmployeeDesignation">
+                <ScalarProperty Name="ROwID" ColumnName="ROwID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeExperiences">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeeExperience">
+              <MappingFragment StoreEntitySet="EmployeeExperience">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ExpStartDate" ColumnName="ExpStartDate" />
+                <ScalarProperty Name="ExpEndDate" ColumnName="ExpEndDate" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeFinancialLimits">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeeFinancialLimit">
+              <MappingFragment StoreEntitySet="EmployeeFinancialLimit">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="FinancialLimit" ColumnName="FinancialLimit" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeePayRevisions">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeePayRevision">
+              <MappingFragment StoreEntitySet="EmployeePayRevision">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="RevisionDate" ColumnName="RevisionDate" />
+                <ScalarProperty Name="FixPay" ColumnName="FixPay" />
+                <ScalarProperty Name="VariablePay" ColumnName="VariablePay" />
+                <ScalarProperty Name="VPPercentage" ColumnName="VPPercentage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeePostings">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeePosting">
+              <MappingFragment StoreEntitySet="EmployeePosting">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ReportingOfficerID" ColumnName="ReportingOfficerID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeQualifications">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeeQualification">
+              <MappingFragment StoreEntitySet="EmployeeQualification">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="YearOfPassing" ColumnName="YearOfPassing" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeRoleMappings">
+            <EntityTypeMapping TypeName="CSLERPModel.EmployeeRoleMapping">
+              <MappingFragment StoreEntitySet="EmployeeRoleMapping">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeRoles" ColumnName="EmployeeRoles" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ERPUsers">
+            <EntityTypeMapping TypeName="CSLERPModel.ERPUser">
+              <MappingFragment StoreEntitySet="ERPUser">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewEmployeeDesignations">
+            <EntityTypeMapping TypeName="CSLERPModel.ViewEmployeeDesignation">
+              <MappingFragment StoreEntitySet="ViewEmployeeDesignation">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="DesignationDate" ColumnName="DesignationDate" />
+                <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewEmployeeDetails">
+            <EntityTypeMapping TypeName="CSLERPModel.ViewEmployeeDetail">
+              <MappingFragment StoreEntitySet="ViewEmployeeDetails">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="DOR" ColumnName="DOR" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ReportingOfficerID" ColumnName="ReportingOfficerID" />
+                <ScalarProperty Name="ReportingOfficerName" ColumnName="ReportingOfficerName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="DesignationDate" ColumnName="DesignationDate" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewEmployeeLocations">
+            <EntityTypeMapping TypeName="CSLERPModel.ViewEmployeeLocation">
+              <MappingFragment StoreEntitySet="ViewEmployeeLocation">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="ReportingOfficerID" ColumnName="ReportingOfficerID" />
+                <ScalarProperty Name="ReportingOfficerName" ColumnName="ReportingOfficerName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreatorName" ColumnName="CreatorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewEmployeePostings">
+            <EntityTypeMapping TypeName="CSLERPModel.ViewEmployeePosting">
+              <MappingFragment StoreEntitySet="ViewEmployeePosting">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ReportingOfficerID" ColumnName="ReportingOfficerID" />
+                <ScalarProperty Name="ReportingOfficerName" ColumnName="ReportingOfficerName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreatorName" ColumnName="CreatorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

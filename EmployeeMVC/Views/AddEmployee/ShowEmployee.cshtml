@@ -1,0 +1,120 @@
+﻿@model EmployeeMVC.Models.Employee
+
+@{
+    ViewBag.Title = "ShowEmployee";
+}
+
+
+<fieldset style="padding:2px">
+    <legend style="padding:20px">Edit Employee </legend>
+    <div id="divInterestDeatils"></div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="float:right;">
+        @*@if (Model.Picture != null)*@
+        
+            @{
+                var base64 = Model.Picture;
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+                <img src='@imgSrc' style="max-width:400px; max-height:252px;" />
+          
+
+        @*@Html.EditorFor(model => model.Picture, new
+            {
+                htmlAttributes = new { @class = "form-control" }
+            })*@
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.EmployeeID, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+    </div><br />
+    <div class="editor-field">
+        @Html.ValidationMessageFor(model => model.EmployeeID, "", new
+       {
+           @class = "text-danger"
+       })
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+    </div><br />
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.PhoneNo, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+    </div><br />
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EmailID, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.EmailID, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+    </div><br />
+       @*<div class="editor-field">
+       @Html.ValidationMessageFor(model => model.EmailID, "", new
+      {
+      @class = "text-danger";
+       })
+   </div>*@
+    <div class="editor-label">
+        Male:   @Html.RadioButton("Gender", "Male")
+        Female: @Html.RadioButton("Gender", "Female")
+    </div><br />
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new
+   {
+       @class = "control-label col-md-2"
+   })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Gender, new
+   {
+       htmlAttributes = new { @class = "form-control" }
+   })*@
+        </div><br />
+        <div>
+
+        </div>
+        <p>
+            <div class="form-group">
+                <div class="col-md-offset-0 col-md-10">
+                    @Html.ActionLink("Back to List", "Employee", "Employee", new { area = "" }, new { @class = "navbar-brand" })
+                    <span class="col-md-offset-0 col-md-5 ">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </span>
+                </div>
+            </div>
+        </p>
+</fieldset>
+

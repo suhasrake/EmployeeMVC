@@ -1,0 +1,179 @@
+﻿@model EmployeeMVC.Models.Employee
+
+@{
+    ViewBag.Title = "Addemployee";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+ 
+    
+@using (Ajax.BeginForm("AddEmployeeResult", "AddEmployee", new AjaxOptions { UpdateTargetId = "divInterestDeatils" }))
+{
+    <fieldset style="padding:2px">
+        <legend style="padding:20px">Add Employee </legend>
+        <div id="divInterestDeatils"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @using (Html.BeginForm("AddEmployeeResult","AddEmployee",FormMethod.Post,new { enctype = "multipart/form-data" }))
+        {
+            <div style="float:right">
+                @Html.TextBox("file", "", new { type = "file" }) 
+                <img id="Usrimg" src="" /><br />
+                @ViewBag.Message               
+            </div>
+        }
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmployeeID, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+        </div><br />
+        <div class="editor-field">
+            @Html.ValidationMessageFor(model => model.EmployeeID, "", new
+       {
+           @class = "text-danger"
+       })
+        </div>
+      
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DOB, new
+           {
+               @class = "control-label col-md-2"
+           })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DOB, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+        </div><br />
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name, new {htmlAttributes = new { @class = "form-control" }})
+        </div><br />
+
+        <div class="editor-label">@Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNo, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+        </div><br />
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailID, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailID, new
+       {
+           htmlAttributes = new { @class = "form-control" }
+       })
+        </div><br />
+
+           
+        <p>
+            <div class="form-group">
+                <div class="col-md-offset-0 col-md-10">
+                    @Html.ActionLink("Back to List", "Employee", "Employee", new { area = "" }, new { @class = "navbar-brand" })
+                    <span class="col-md-offset-0 col-md-5 ">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </span>
+                </div>
+            </div>
+        </p>
+    </fieldset>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#file").change(function () {
+            alert(this.files);
+            if ($("#file").files && $("#file").files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#Usrimg').attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        });
+    });
+
+
+</script>
+
+@*<div style="position:absolute; width:650px; background-color:antiquewhite; border:solid;" >
+        <div id="Dialog-Box" class="col-md-4" style="padding-left:4pc;">
+            <div>
+                ID:<br /><input  type="text" id="ID" />
+            @Html.TextBoxFor(m=>m.EmployeeID)
+            </div>  <br />
+            <div  >
+                Name:<br /><input  type="text" id="Name" />
+                @Html.TextBoxFor(m => m.Name)
+            </div><br />
+            <div>
+                Phno:<br /><input type="text" id="Phno" />
+                @Html.TextBoxFor(m => m.PhoneNo)
+            </div><br />
+            <div style="position:center" >
+                EmailID:<br /><input type="text" id="EmailID" />
+                @Html.TextBoxFor(m => m.EmailID)
+            </div><br />
+         <span><input id="btnsve" type="button" value="Save" /></span>
+          <span><input id="cancel" type="button" value="Cancel" /></span> <br/><br/>
+        </div>
+    </div>
+    <script>
+        $( document ).ready(function() {
+            $('#btnsve').click(function () {
+
+                var employee = {  Empid :  $('#ID').val(),
+                 name :$('#Name').val(),
+                 phno :$('#Phno').val(),
+                emailid : $('#EmailID').val()
+            }
+
+                var Empid =  $('#ID').val();
+                var name =$('#Name').val();
+                var phno = $('#Phno').val();
+                var emailid = $('#EmailID').val();
+                alert(name);
+                $.ajax({
+                    type: "POST",
+                    url: "/AddEmployee/AjaxMethod",
+                    data: employee,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });*@
+
+
+
+
+
+
